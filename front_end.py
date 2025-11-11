@@ -1,7 +1,7 @@
 #DONT FORGET TO IMPORT FUNCTIONS AFTER YOU MAKE THEM
 from models import Owners, session
 from bp_auth import register, login
-from bp_owner import view_owner
+from bp_owner import view_owner, update_owner
 
 
 def welcome_menu():
@@ -37,8 +37,7 @@ def owner_menu(current_user):
         if choice == '1':
             view_owner(current_user)
         elif choice == '2':
-            #update profile function, and returns the updated user
-            #on success, should set current_user to the user that is returned
+            current_user = update_owner(current_user)
             pass
         elif choice == '3':
             #delete the current users account
