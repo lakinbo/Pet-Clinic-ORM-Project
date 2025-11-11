@@ -1,7 +1,7 @@
 #DONT FORGET TO IMPORT FUNCTIONS AFTER YOU MAKE THEM
 from models import Owners, session
 from bp_auth import register, login
-from bp_owner import view_owner, update_owner
+from bp_owner import view_owner, update_owner, delete_owner
 
 
 def welcome_menu():
@@ -40,8 +40,8 @@ def owner_menu(current_user):
             current_user = update_owner(current_user)
             pass
         elif choice == '3':
-            #delete the current users account
-            pass
+            current_user = delete_owner(current_user)
+            return current_user
         elif choice == '4':
             return #Goes back to main menu
         else:
@@ -78,7 +78,7 @@ def appointments_menu(current_user):
         print("""
 1.) schedule appointment
 2.) view appointments
-3.) reschdule appointment
+3.) reschedule appointment
 4.) Complete appointment
 5.) Back
 """)
@@ -111,7 +111,7 @@ def main():
     current_user = session.get(Owners, 1)
 
     if current_user:
-        while True:
+        while True and current_user:
             print("""
         --------- Pet Clinic --------
         1.) Manage Profile
