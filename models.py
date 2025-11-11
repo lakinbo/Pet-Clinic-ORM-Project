@@ -21,9 +21,15 @@ class Owners(Base):
     
     # Relationship to pets (one-to-many)
     pets: Mapped[list["Pets"]] = relationship("Pets", back_populates="owner")
-    
-    
+        
+    def display(self):
+        print("--------- My Info ---------------")
+        print("Name: ",self.name)
+        print("Email: ",self.email)
+        print("Phone: ",self.phone)
 
+
+        
 
 class Pets(Base):
     """Pet model representing pets in the clinic"""

@@ -1,6 +1,7 @@
 #DONT FORGET TO IMPORT FUNCTIONS AFTER YOU MAKE THEM
 from models import Owners, session
 from bp_auth import register, login
+from bp_owner import view_owner
 
 
 def welcome_menu():
@@ -34,8 +35,7 @@ def owner_menu(current_user):
     4.) Back""")
         choice = input("choose 1-3: ")
         if choice == '1':
-            #view profile funtion should display the current users info
-            pass
+            view_owner(current_user)
         elif choice == '2':
             #update profile function, and returns the updated user
             #on success, should set current_user to the user that is returned
@@ -103,12 +103,14 @@ def appointments_menu(current_user):
 
 def main():
     
-    current_user = welcome_menu(Owners, 1) 
+    # current_user = welcome_menu() 
 
     #After you test you login and register functions, it might be more efficient
     #to set current_user to a user in your db so you don't have to log in everytime
     #you want to test something.
     
+    current_user = session.get(Owners, 1)
+
     if current_user:
         while True:
             print("""

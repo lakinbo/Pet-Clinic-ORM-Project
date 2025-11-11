@@ -2,7 +2,13 @@ from models import Owners, session
 
 #View profile function
 #displays the current users info
+# def view_owner(current_user):
+#   print("Name: ",current_user.name)
+#   print("Email: ",current_user.email)
+#   print("Phone: ",current_user.phone)
 
+def view_owner(current_user):
+  current_user.display()
 
 #Update profile function
 #dsiplays current user info
